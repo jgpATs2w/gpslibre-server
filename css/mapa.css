@@ -1,0 +1,9 @@
+html { height: 100% }
+body { height: 100%; margin: 0; padding: 0 }
+
+#map_canvas { 
+	height: 100%; width: 80%;
+	border:1px solid #bebebe;border-radius:18px;-moz-border-radius:18px;-webkit-border-radius:18px;behavior:url(js/PIE.htc);
+	position:absolute; top: 100px; left: 200px;
+	padding-top:5px;padding-left:10px
+}

@@ -1,0 +1,14 @@
+#log_canvas {
+	position: absolute; top: 100px; left: 200px;
+	height: 100%;width: 600px;
+	overflow: scroll;
+}
+#logtable {
+	font-family: "Arial Black"; 
+}
+#logtable thead{
+	font-size: 16px;
+	text-decoration: underline;}
+#logtable td{
+	margin-left: 10px
+}
