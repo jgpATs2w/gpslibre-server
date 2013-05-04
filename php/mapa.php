@@ -7,11 +7,11 @@ $D = pg_fetch_all($r);
 
 ?>
 <div id="controls" >
-	Muéstrame <input id="n" type="text" value="20" size="3" onchange="process();"/> datos<br>
-	Dispositivo <select id="who" onchange="process();"><? foreach ($D as $d) {?><option value="<?=$d['who']?>"><?=$d['who']?></option><?}?></select><br>
-	<a href="javascript:process()">Actualizar</a>
+	Mostrar datos desde <input id="from" type="text" value="<?=date('d/m/y')?>" size="6" onchange="process();">
+	hasta <input id="to" type="text" value="<?=date('d/m/y')?>" size="6" onchange="process();">
+	del dispositivo <select id="who" onchange="process();"><? foreach ($D as $d) {?><option value="<?=$d['who']?>"><?=$d['who']?></option><?}?></select>
+	<button onclick="javascript:process()" class="big">Actualizar</button>
 </div>
-
 <div id="map_canvas"></div>
 
 <? html_end('visor') ?>

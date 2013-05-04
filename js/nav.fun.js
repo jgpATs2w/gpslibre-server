@@ -19,12 +19,16 @@ function hide_div(id){
 	document.getElementById(id).style.visibility="hidden";
 }
 function show_div(id){
-	document.getElementById(id).style.visibility="block";
-}
+	var item = document.getElementById(id);
+ 	if (item) item.className='unhidden';
+ }
 function toogle_div(id){
-	var disp = document.getElementById(id).style.display;
-	document.getElementById(id).style.display = (disp == 'none')? '':'none';
-}
+	var item = document.getElementById(id);
+ 	if (item) {
+ 		item.className=(item.className=='hidden')?'unhidden':'hidden';
+ 	}
+ 	console.info(id+' '+item.className);
+ }
 function toogle_rows(className){
 	var H = document.getElementsByClassName(className);
 
@@ -35,6 +39,12 @@ function toogle_rows(className){
 function getFormattedDate(ts){	
 	//console.info("formatting ts "+ts);
 	var d = new Date();
-		d.setTime(parseInt(ts)+(d.getTimezoneOffset()+120)*60000);
+		d.setTime(parseInt(ts));//+(d.getTimezoneOffset()+120)*60000)
 	return d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear()+" "+d.getHours()+":"+d.getMinutes();
+}
+function show_alert(m){
+	var alert = document.getElementById('alert');
+	alert.innerHTML = m;
+	alert.className = "unhidden";
+	setTimeout("document.getElementById('alert').className='hidden';", 2000);
 }

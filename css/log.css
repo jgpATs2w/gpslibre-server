@@ -4,11 +4,13 @@
 	overflow: scroll;
 }
 #logtable {
-	font-family: "Arial Black"; 
+	font-family: Arial, Helvetica, sans-serif; 
 }
-#logtable thead{
+#logtable .thead{
 	font-size: 16px;
-	text-decoration: underline;}
-#logtable td{
-	margin-left: 10px
+	text-decoration: underline;
+	font-weight: 300;}
+#logtable .td{
+	margin-left: 10px;
+	padding-left: 20px;
 }

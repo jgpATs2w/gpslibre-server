@@ -7,16 +7,16 @@ function html_start($t){?>
 		<title>GPS Libre :: <?=$t?></title>
 		<meta charset="ISO-8859-1" />
 		
+		<link rel="stylesheet" href="../css/main.css" type="text/css" media="all">
 		<script type="text/javascript" src="../js/ajax.js"></script>
+		<script type="text/javascript" src="../js/nav.fun.js"></script>
 		<? extra_head($t);?>		
 		
-		<script type="text/javascript" src="../js/nav.fun.js"></script>
 		
-		<link rel="stylesheet" href="../css/main.css" type="text/css" media="all">
 	</head>
 	<body onload="load('<?=$t?>')" <? extra_body($t);?>>
 		<div id="menu"></div>
-		<div id="alert" style="display:block">zzz...</div>
+		<div id="alert" class="hidden">zzz...</div>
 		<? ob_flush();?>
 		
 	<?

@@ -7,7 +7,7 @@ function ajax( options ) {
 			onError: options.onError || function(){},
 			onSuccess: options.onSuccess || function(){}
 	};
-	console.info("sending url: "+options.url);
+	console.info("sending url: "+options.url); show_alert('esperando datos...')
 	var xml = new XMLHttpRequest();
 		xml.open(options.type, options.url, true);
 		
@@ -54,7 +54,7 @@ function ajax( options ) {
 		if ( type == "script" )
 			eval.call( window, data );
 		
-		console.info("returning data "+r.responseXML);
+		//console.info("returning data "+r.responseXML);
 		
 		return data;
 	}

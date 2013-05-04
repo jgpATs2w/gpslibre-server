@@ -1,15 +1,21 @@
-var map = null; var D; var n=2;var who='nokia';
+var map = null; var D; var n; var from; var to; var who='nokia';
 var Markers = new Array();
 var path = null;
 function process(){
 	updateUserInputs();
 	ajax({
-		url: "table2json.php?table=apisquillos&n="+n+"&who="+who,
+		url: "table2json.php?table=apisquillos&who="+who+"&from="+from+"&to="+to,
 		type: "json",
 		onSuccess: function (data){
-			console.info("constructing Map...");
-			D = eval(data);
-			n=Math.min(n, D.length-1);console.info("process.MapManager#received "+D.length+" data");
+			console.info("constructing Map..."); 
+			D = eval(data);show_alert("recibidos "+D.length+" datos");
+			n=D.length-1;
+			if(n<0){
+				noData();
+				return;	
+			}
+			console.info("process.MapManager#received "+D.length+" data. ");
+			
 			for(j=0;j<=n;j++){console.info("j= "+j);
 				if(j==0) loadMap(D[j]['lat'],D[j]['lon']);
 				addMapMarker(j,D[j]['lat'],D[j]['lon'],D[j]['ts_remote'],D[j]['batt']);
@@ -18,6 +24,7 @@ function process(){
 		},
 		onError: function(){
 			console.error("error on Ajax");
+			show_alert("error en ajax");
 		},
 		onComplete: function(){
 			console.info("completed")
@@ -26,10 +33,11 @@ function process(){
 }
 function updateUserInputs(){
 	who = document.getElementById('who').value; console.info("updated who to "+who);
-	n = document.getElementById('n').value;
+	from = document.getElementById('from').value;
+	to = document.getElementById('to').value;
 }
 function loadMap(lat,lon){
-	console.info("loading map...");
+	console.info("loading map..."); show_alert("cargando mapa...");
 
 	myLatlng = new google.maps.LatLng(lat,lon);
     var myOptions = {
@@ -42,7 +50,11 @@ function loadMap(lat,lon){
    
     
 }
-function addMapMarker(i,lat, lon, ts, batt) {
+function noData(){
+	map = null;
+	document.getElementById("map_canvas").innerHTML = "<p class='nodata'>No hay datos que mostrar, revisa las fechas y el dispositivo</p>";
+}
+function addMapMarker(i,lat, lon, ts, batt) { console.info("adding marker "+i);
 	var contentString = getFormattedDate(ts)+"<br> Battery: "+batt+"%";
         
     var infowindow = new google.maps.InfoWindow({
@@ -75,7 +87,7 @@ function clearMarkers(){console.info("clearMarkers.MapManager#removing markers..
 }
 function drawPath(data){
 	var PathLL = [];
-	for(i=1;i<n;i++) PathLL.push(new google.maps.LatLng(D[i]['lat'],D[i]['lon']));
+	for(i=0;i<=n;i++) PathLL.push(new google.maps.LatLng(D[i]['lat'],D[i]['lon']));
     path = new google.maps.Polyline({
       path: PathLL,
       strokeColor: "#FF0000",
