@@ -5,6 +5,6 @@ server side of [GPSLibre system](http://gpslibre.es). Written in PHP, HTML and M
 
 Currently in production: http://visor.gpslibre.es.  
 
-Featurest:  
+Features:  
 - Lightweight backend to collect GPS data from Android phones running GPSLibre.apk  
 - Lightweight frontend to visualize data on Google Maps, and log info.  
